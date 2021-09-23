@@ -5,7 +5,7 @@ class MultiThread {
 
     public void printOddNumber() {
         synchronized (this) {
-            while (counter < N) {
+            while (counter < 100) {
                 while (counter % 2 == 0) {
                     try {
                         wait();
