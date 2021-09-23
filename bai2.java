@@ -50,23 +50,19 @@ class MultiThread {
         }
     }
 
-    // Driver Code
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         N = 100;
 
         MultiThread mt = new MultiThread();
 
         Thread t1 = new Thread(new Runnable() {
-            public void run()
-            {
+            public void run() {
                 mt.printEvenNumber();
             }
         });
 
         Thread t2 = new Thread(new Runnable() {
-            public void run()
-            {
+            public void run() {
                 mt.printOddNumber();
             }
         });
@@ -74,3 +70,4 @@ class MultiThread {
         t1.start();
         t2.start();
     }
+}
