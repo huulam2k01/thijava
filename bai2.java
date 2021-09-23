@@ -2,10 +2,12 @@ class MultiThread {
     int counter = 0;
 
     static int N;
+    int i = 0;
+    int j = 0;
 
     public void printOddNumber() {
         synchronized (this) {
-            while (counter < 100) {
+            while (counter < N) {
                 while (counter % 2 == 0) {
                     try {
                         wait();
@@ -13,9 +15,15 @@ class MultiThread {
                         e.printStackTrace();
                     }
                 }
-
-                System.out.println("--" + counter);
-                System.out.println("--" + (counter + 2));
+                if (counter == 1) {
+                    System.out.println("--" + counter);
+                    System.out.println("--" + (counter + 2));
+                    i = counter + 4;
+                } else {
+                    System.out.println("--" + i);
+                    System.out.println("--" + (i + 2));
+                    i += 4;
+                }
                 counter++;
                 notify();
             }
@@ -43,19 +51,22 @@ class MultiThread {
     }
 
     // Driver Code
-    public static void main(String[] args) {
-        N = 10;
+    public static void main(String[] args)
+    {
+        N = 100;
 
         MultiThread mt = new MultiThread();
 
         Thread t1 = new Thread(new Runnable() {
-            public void run() {
+            public void run()
+            {
                 mt.printEvenNumber();
             }
         });
 
         Thread t2 = new Thread(new Runnable() {
-            public void run() {
+            public void run()
+            {
                 mt.printOddNumber();
             }
         });
@@ -63,8 +74,3 @@ class MultiThread {
         t1.start();
         t2.start();
     }
-}
-
-class bai2 {
-
-}
